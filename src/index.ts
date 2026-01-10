@@ -9,4 +9,6 @@ import app from "./server";
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server running on port ${process.env.PORT || 3000}`);
+  console.log(`Environment: ${process.env.NODE_ENV}`);
+  console.log(`API Key: ${process.env.OPENAI_API_KEY}`);
 });

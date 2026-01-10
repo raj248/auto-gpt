@@ -1,6 +1,7 @@
 import express, { type Express, type Request, type Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
+import path from "path";
 
 const app: Express = express();
 
@@ -10,12 +11,12 @@ const app: Express = express();
 // credentials: true
 // }));
 
-// app.use(
-//   cors({
-//     origin: true, // or your frontend IP/domain
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: true, // or your frontend IP/domain
+    credentials: true,
+  })
+);
 
 app.use(cors());
 
@@ -24,8 +25,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+import gpt from "./controllers/gpt";
+
+app.use("/api/gpt", gpt);
+
+app.use(express.static(path.join(process.cwd(), "public")));
+
+app.use((req, res) => {
+  res.sendFile(path.join(process.cwd(), "public", "index.html"));
 });
 
 export default app;
