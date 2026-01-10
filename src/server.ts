@@ -11,6 +11,8 @@ const app: Express = express();
 // credentials: true
 // }));
 
+// development only CORS
+
 app.use(
   cors({
     origin: true, // or your frontend IP/domain
