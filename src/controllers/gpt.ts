@@ -30,7 +30,7 @@ router.post("/batch", async (req, res) => {
       return { id, prompt, response };
     })
   );
-  console.log(responses);
+  // console.log(responses);
   res.json(responses);
 });
 
