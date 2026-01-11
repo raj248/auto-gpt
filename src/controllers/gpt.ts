@@ -1,10 +1,11 @@
 import { xai } from "@ai-sdk/xai";
 import { generateText } from "ai";
+import { Router } from "express";
+import { authenticateToken } from "./auth";
 
-import { response, Router } from "express";
 const router = Router() as Router;
 
-router.post("/batch", async (req, res) => {
+router.post("/batch", authenticateToken, async (req, res) => {
   const { instruction, prompts } = req.body;
 
   if (!prompts || !Array.isArray(prompts)) {

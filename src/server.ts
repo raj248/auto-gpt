@@ -28,8 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 import gpt from "./controllers/gpt";
+import auth from "./controllers/auth";
 
 app.use("/api/gpt", gpt);
+app.use("/api/auth", auth);
 
 app.use(express.static(path.join(process.cwd(), "public")));
 
